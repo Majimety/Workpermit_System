@@ -1,0 +1,44 @@
+using iText.Kernel.Pdf;
+using iText.Forms;
+using iText.Forms.Fields;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+public class GetPdfFormFieldNames
+{
+    public const string SRC = "C:/Users/jiray/WorkPermit/FORM_SUBSTATION_กสฟ.ฉ.1.pdf"; // เปลี่ยนเป็น Path ไฟล์ PDF ของคุณ
+
+    public static void Main(string[] args)
+    {
+        using (PdfDocument pdfDoc = new PdfDocument(new PdfReader(SRC)))
+        {
+            PdfAcroForm form = PdfAcroForm.GetAcroForm(pdfDoc, true);
+
+            if (form != null)
+            {
+                IDictionary<string, PdfFormField> fields = form.GetFormFields();
+                Console.WriteLine("Form fields in the PDF:");
+                foreach (KeyValuePair<string, PdfFormField> entry in fields)
+                {
+                    string fieldName = entry.Key;
+                    PdfFormField field = entry.Value;
+                    string fieldType = field.GetFormType().ToString(); // Get the type of the field
+
+                    Console.WriteLine($"  Name: {fieldName}, Type: {fieldType}");
+                    // ถ้าคุณต้องการตรวจสอบว่ามันเป็น Checkbox โดยเฉพาะ
+                    if (fieldType.Equals("/Btn") && field.GetWidget().ContainsKey(new PdfName("AP")))
+                    {
+                        // /Btn (Button) type covers both push buttons, radio buttons, and checkboxes.
+                        // Checkboxes typically have an Appearance dictionary (/AP) with /N (Normal) states like /Off and /Yes (or similar)
+                        Console.WriteLine("    (Likely a Checkbox or Radio Button)");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No AcroForm found in the PDF.");
+            }
+        }
+    }
+}

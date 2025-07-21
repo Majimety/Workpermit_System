@@ -1,0 +1,20 @@
+[2025-05-30T09:19:48.802Z] INFO: Server listening on port 3000
+[2025-05-30T09:20:40.079Z] INFO: Received /sheet-updated request
+[2025-05-30T09:20:40.080Z] INFO: Processing row number: 6
+[2025-05-30T09:20:41.342Z] INFO: Retrieved data from sheet
+[2025-05-30T09:20:45.145Z] INFO: PDF generated at: C:\Users\jiray\WorkPermit\temp\อุดรธานี_2_,_บ้านดุง_2_,_ขอนแก่น_1_,_ขอนแก่น_2\ประเสริฐศักดิ์_เหลือวงศ์_30-05-2568_16-20-41.pdf
+[2025-05-30T09:20:47.190Z] INFO: Uploaded PDF to Drive with fileId: 1gkbx8C-tth2A-YHOhTpNFUdCfIeJw4G1
+[2025-05-30T09:20:48.481Z] INFO: Shared file and received URL: https://drive.google.com/file/d/1gkbx8C-tth2A-YHOhTpNFUdCfIeJw4G1/view?usp=sharing
+[2025-05-30T09:20:49.873Z] INFO: Deleted old file if existed
+[2025-05-30T09:20:50.517Z] INFO: Updated sheet with new Drive URL
+[2025-05-30T09:20:50.519Z] INFO: Cleaned up temp folder
+[2025-05-30T09:24:10.446Z] INFO: Server listening on port 3000
+[2025-05-30T09:24:26.798Z] INFO: Received /sheet-updated request
+[2025-05-30T09:24:26.799Z] INFO: Processing row number: 6
+[2025-05-30T09:24:28.034Z] INFO: Retrieved data from sheet
+[2025-05-30T09:24:31.730Z] INFO: PDF generated at: C:\Users\jiray\WorkPermit\temp\ประเสริฐศักดิ์_เหลือวงศ์\ประเสริฐศักดิ์_เหลือวงศ์_30-05-2568_16-24-28.pdf
+[2025-05-30T09:24:33.698Z] INFO: Uploaded PDF to Drive with fileId: 16uUww1U9dznIS1kxgs9Fh7NZfKmXNMvl
+[2025-05-30T09:24:34.749Z] INFO: Shared file and received URL: https://drive.google.com/file/d/16uUww1U9dznIS1kxgs9Fh7NZfKmXNMvl/view?usp=sharing
+[2025-05-30T09:24:36.178Z] INFO: Deleted old file if existed
+[2025-05-30T09:24:36.799Z] INFO: Updated sheet with new Drive URL
+[2025-05-30T09:24:36.801Z] INFO: Cleaned up temp folder

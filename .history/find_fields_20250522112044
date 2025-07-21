@@ -1,0 +1,68 @@
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.forms.PdfAcroForm;
+import com.itextpdf.forms.fields.PdfFormField;
+import com.itextpdf.kernel.pdf.PdfName; // Import เพื่อใช้ PdfName ในการตรวจสอบประเภทฟิลด์
+
+import java.io.IOException;
+import java.util.Map;
+
+public class GetPdfFormFields {
+
+    public static final String SRC = "C:/Users/jiray/WorkPermit/FORM_SUBSTATION_กสฟ.ฉ.1.pdf"; // Path ไฟล์ PDF ของคุณ
+
+    public static void main(String[] args) {
+        PdfDocument pdfDoc = null;
+        try {
+            pdfDoc = new PdfDocument(new PdfReader(SRC));
+            PdfAcroForm form = PdfAcroForm.getAcroForm(pdfDoc, true);
+
+            if (form != null) {
+                Map<String, PdfFormField> fields = form.getFormFields();
+                System.out.println("Form fields found in the PDF:");
+                System.out.println("------------------------------------");
+                if (fields.isEmpty()) {
+                    System.out.println("No form fields found in this PDF.");
+                } else {
+                    for (Map.Entry<String, PdfFormField> entry : fields.entrySet()) {
+                        String fieldName = entry.getKey();
+                        PdfFormField field = entry.getValue();
+                        String fieldType = field.getFormType() != null ? field.getFormType().toString() : "Unknown Type";
+
+                        // ตรวจสอบว่าเป็น Checkbox (Button field with specific appearances)
+                        String additionalInfo = "";
+                        if (fieldType.equals(PdfName.Btn.toString())) {
+                            // Buttons can be Push Buttons, Radio Buttons, or Checkboxes
+                            // Checkboxes and Radio Buttons typically have an Appearance dictionary (/AP)
+                            // and their values change (e.g., /Yes, /Off)
+                            if (field.getKids().isEmpty() && field.getWidgets().size() == 1 && field.getWidget().containsKey(PdfName.AP)) {
+                                additionalInfo = " (Likely Checkbox or Radio Button)";
+                            }
+                        } else if (fieldType.equals(PdfName.Tx.toString())) {
+                            additionalInfo = " (Text Field)";
+                        } else if (fieldType.equals(PdfName.Ch.toString())) {
+                            additionalInfo = " (Choice/Dropdown Field)";
+                        }
+
+                        System.out.println("  Name: " + fieldName + ", Type: " + fieldType + additionalInfo);
+                    }
+                }
+                System.out.println("------------------------------------");
+            } else {
+                System.out.println("No AcroForm (interactive form) found in the PDF at: " + SRC);
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error reading PDF file or no such file found: " + SRC);
+            e.printStackTrace();
+        } finally {
+            if (pdfDoc != null) {
+                try {
+                    pdfDoc.close();
+                } catch (IOException e) {
+                    System.err.println("Error closing PDF document: " + e.getMessage());
+                }
+            }
+        }
+    }
+}
