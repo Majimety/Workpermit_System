@@ -104,8 +104,7 @@ node index.js
 - The system will generate a PDF → upload to Google Drive → return the shared link → write it back into the sheet
 
 ### 🛡️ Security Notes
-Never commit credential.json to the repository (add it to .gitignore)
-
-Use HTTPS or ngrok with an auth token in production
-
-Add retries and error handling for network/API failures
+- Never commit credential.json to the repository (add it to .gitignore)
+- Use HTTPS or ngrok with an auth token in production
+- Add retries and error handling for network/API failures
+- Regularly rotate API keys and tokens to reduce security risk
