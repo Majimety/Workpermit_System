@@ -17,16 +17,17 @@
 
 ## 📁 Project Structure
 
+```bash
 work-permit-system/
-
-- ├── index.js # Main Express server - receives webhook from Apps Script
-- ├── sheets.js # Interacts with Google Sheets API
-- ├── pdf.js # Generates PDF from sheet data using iText DITO
-- ├── drive.js # Uploads and shares files to Google Drive
-- ├── utils.js # Utility functions (file naming, data handling, etc.)
-- ├── credential.json # Google Service Account credentials (keep this secure)
-- ├── output/ # Temporary storage for generated PDFs
-- └── README.md
+├── index.js # Main Express server - receives webhook from Apps Script
+├── sheets.js # Interacts with Google Sheets API
+├── pdf.js # Generates PDF from sheet data using iText DITO
+├── drive.js # Uploads and shares files to Google Drive
+├── utils.js # Utility functions (file naming, data handling, etc.)
+├── credential.json # Google Service Account credentials (keep this secure)
+├── output/ # Temporary storage for generated PDFs
+└── README.md
+```
 
 ---
 
